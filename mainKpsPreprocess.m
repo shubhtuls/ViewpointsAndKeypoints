@@ -4,17 +4,17 @@ function [] = mainKpsPreprocess()
 
 globals;
 %% imgwise annotations
-% generatePascalImageAnnotations();
+generatePascalImageAnnotations();
 
 %% rcnn data files
-% rcnnKpsDataCollect();
+rcnnKpsDataCollect();
 
 %% generate window file
-% params.heatMapDims = [6 6];
-% pascalKpsMulticlassTrainValCreate()
+params.heatMapDims = [6 6];
+pascalKpsMulticlassTrainValCreate()
 % 
-% params.heatMapDims = [12 12];
-% pascalKpsMulticlassTrainValCreate()
+params.heatMapDims = [12 12];
+pascalKpsMulticlassTrainValCreate()
 
 %% train the cnns
 

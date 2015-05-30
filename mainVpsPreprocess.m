@@ -5,31 +5,34 @@ function [] = mainVpsPreprocess()
 globals;
 
 %% Read data from pascal3d dataset
-% for c = params.classInds
-%     class = pascalIndexClass(c);
-%     disp(['Reading data for : ' class]);
-%     readVpsData(class);
-% end
+for c = params.classInds
+    class = pascalIndexClass(c);
+    disp(['Reading data for : ' class]);
+    readVpsData(class);
+end
 
 %% Create imagewise datastructures for cnn window file generation
-vpsPascalDataCollect()
-vpsImagenetDataCollect()
+vpsPascalDataCollect();
+vpsImagenetDataCollect();
 
 %% Create cnn training file(s)
-rcnnBinnedJointTrainValTestCreate('');
-rcnnMultibinnedJointTrainValTestCreate([24 16 8 4]);
+rcnnBinnedJointTrainValTestCreate(''); %generates window file for network that estimates all three euler angles
+rcnnMultibinnedJointTrainValTestCreate([24 16 8 4]); % generates window file for network that estimates azimuth in various bins as desired by pascal3D+ evaluation
 
-%% Train the CNN !
+%% Train the CNNs !
 % (not from matlab, unfortunately)
-% update the window file paths in trainTest.prototxt to refer to the
-% Train/Val files created by above function
+% update the window file paths in the data layers of 
+% PATH_TO_PROTOTXT_DIR/vggJointVps/trainTest.prototxt and PATH_TO_PROTOTXT_DIR/vggAzimuthVps/trainTest.prototxt
+% to refer to the Train/Val files created by above functions.
 
-% ./build/tools/caffe.bin train -solver
-% /work5/shubhtuls/prototxts/codeRelease/vpsKps/vggJointVps/solver.prototxt
-% -weights PATH_TO_VGG_CAFFEMODEL
+% we train two networks here - one for 
+% the shell scripts look as follows
+
+% ./build/tools/caffe.bin train -solver PATH_TO_PROTOTXT_DIR/vggJointVps/solver.prototxt -weights PATH_TO_PRETRAINED_VGG_CAFFEMODEL
+% ./build/tools/caffe.bin train -solver PATH_TO_PROTOTXT_DIR/vggAzimuthVps/solver.prototxt -weights PATH_TO_PRETRAINED_VGG_CAFFEMODEL
 
 %% Compute features
-% generatePoseFeatures('vggJointVps',vggJointVps',224,params.classInds,1)
+generatePoseFeatures('vggJointVps','vggJointVps',224,params.classInds,1); % needed for evaluation
 
 end
 
