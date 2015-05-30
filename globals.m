@@ -1,0 +1,26 @@
+global basedir
+global cachedir
+global PASCAL3Ddir
+
+global rcnnVpsPascalDataDir
+global rcnnKpsPascalDataDir
+global rcnnVpsImagenetDataDir
+
+global rotationPascalDataDir
+global rotationImagenetDataDir
+global rotationJointDataDir
+global kpsPascalDataDir
+
+global finetuneVpsDir
+global finetuneKpsDir
+
+global params
+global pascalImagesDir
+global pascalDir
+global annotationDir
+global segkpAnnotationDir
+global imagenetImagesDir
+global websiteDir
+global snapshotsDir
+global prototxtDir
+global rcnnDetectionsFile
