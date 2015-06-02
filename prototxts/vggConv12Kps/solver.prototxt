@@ -10,5 +10,4 @@ max_iter: 20000
 momentum: 0.90
 weight_decay: 0.0005
 snapshot: 5000
-iter_size: 5
 snapshot_prefix: "/work5/shubhtuls/snapshots/codeRelease/vpsKps/vggConv12Kps"
