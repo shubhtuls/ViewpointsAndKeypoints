@@ -27,15 +27,15 @@ global rcnnDetectionsFile
 
 %%
 basedir = pwd();
-cachedir  = '/work5/shubhtuls/cachedir/codeRelease/vpsKps'; % directory where all the intermediate computations etc will be saved
-PASCAL3Ddir = '/work5/shubhtuls/cachedir/Datasets/PASCAL3D'; % 
+cachedir  = '/work5/shubhtuls/cachedir/codeRelease/vpsKps'; % directory where all the intermediate computations and data will be saved
 
-pascalImagesDir = '/work5/shubhtuls/cachedir/Datasets/VOCdevkit/VOC2012/JPEGImages/';
-pascalDir = '/work5/shubhtuls/cachedir/Datasets/VOCdevkit/';
-imagenetImagesDir = '/work5/shubhtuls/cachedir/Datasets/imagenet/images';
-annotationDir = '/work5/shubhtuls/cachedir/Datasets/pascalAnnotations/imgAnnotations';
-segkpAnnotationDir = '/work5/shubhtuls/cachedir/Datasets/pascalAnnotations/segkps';
-rcnnDetectionsFile = '/work5/shubhtuls/cachedir/codeRelease/vpsKps/VOC2012_val_det.mat';
+PASCAL3Ddir = fullfile(cachedir,'data','PASCAL3D');
+pascalDir = fullfile(cachedir,'data','VOCdevkit');
+pascalImagesDir = fullfile(cachedir,'data','VOCdevkit','VOC2012','JPEGImages');
+imagenetImagesDir = fullfile(cachedir,'data','imagenet','images');
+annotationDir = fullfile(cachedir,'data','pascalAnnotations','imgAnnotations');
+segkpAnnotationDir = fullfile(cachedir,'data','pascalAnnotations','segkps');
+rcnnDetectionsFile = fullfile(cachedir,'VOC2012_val_det.mat');
 
 params = getParams;
 
