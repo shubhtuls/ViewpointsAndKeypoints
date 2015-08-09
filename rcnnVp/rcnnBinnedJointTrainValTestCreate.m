@@ -20,12 +20,12 @@ params = getParams();
 
 %% Train/Val/Test filenames generate
 
-load(fullfile(cachedir,'jointTrainValTestSets.mat'));
+load(fullfile(cachedir,'imagenetTrainIds.mat'));
 load(fullfile(cachedir,'pascalTrainValIds.mat'));
 finetuneDir = fullfile(finetuneVpsDir,'binnedJoint');
 mkdirOptional(finetuneDir);
 fnamesSets = {};
-fnamesSets{1} = unique(vertcat(trainIds,fnamesTrain')); %train on pascal+imagenet
+fnamesSets{1} = unique(vertcat(trainIds,fnamesTrain)); %train on pascal+imagenet
 fnamesSets{2} = valIds; %val images are from pascal train
 
 %% Generating test files

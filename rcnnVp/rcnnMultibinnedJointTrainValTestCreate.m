@@ -25,12 +25,12 @@ for b=binSizes
     intervals{end+1} = [0 (360/(b*2)):(360/b):360-(360/(b*2))];
 end
 
-load(fullfile(cachedir,'jointTrainValTestSets.mat'));
+load(fullfile(cachedir,'imagenetTrainIds.mat'));
 load(fullfile(cachedir,'pascalTrainValIds.mat'));
 finetuneDir = fullfile(finetuneVpsDir,'multiBinnedJoint');
 mkdirOptional(finetuneDir);
 fnamesSets = {};
-fnamesSets{1} = unique(vertcat(trainIds,fnamesTrain')); %train on pascal+imagenet
+fnamesSets{1} = unique(vertcat(trainIds,fnamesTrain)); %train on pascal+imagenet
 fnamesSets{2} = valIds; %val images are from pascal train
 
 %% Generating test files

@@ -27,15 +27,15 @@ global rcnnDetectionsFile
 
 %%
 basedir = pwd();
-cachedir  = '/work5/shubhtuls/cachedir/codeRelease/vpsKps'; % directory where all the intermediate computations and data will be saved
+cachedir  = fullfile(basedir,'cachedir'); % directory where all the intermediate computations and data will be saved
 
-PASCAL3Ddir = fullfile(cachedir,'data','PASCAL3D');
-pascalDir = fullfile(cachedir,'data','VOCdevkit');
-pascalImagesDir = fullfile(cachedir,'data','VOCdevkit','VOC2012','JPEGImages');
-imagenetImagesDir = fullfile(cachedir,'data','imagenet','images');
-annotationDir = fullfile(cachedir,'data','pascalAnnotations','imgAnnotations');
-segkpAnnotationDir = fullfile(cachedir,'data','pascalAnnotations','segkps');
-rcnnDetectionsFile = fullfile(cachedir,'VOC2012_val_det.mat');
+PASCAL3Ddir = fullfile(basedir,'data','PASCAL3D');
+pascalDir = fullfile(basedir,'data','VOCdevkit');
+pascalImagesDir = fullfile(basedir,'data','VOCdevkit','VOC2012','JPEGImages');
+imagenetImagesDir = fullfile(basedir,'data','imagenet','images');
+annotationDir = fullfile(basedir,'data','pascalAnnotations','imgAnnotations');
+segkpAnnotationDir = fullfile(basedir,'data','pascalAnnotations','segkps');
+rcnnDetectionsFile = fullfile(basedir,'data','VOC2012_val_det.mat');
 
 params = getParams;
 
@@ -51,21 +51,38 @@ rotationJointDataDir = fullfile(cachedir,'rotationDataJoint');
 finetuneVpsDir = fullfile(cachedir,'rcnnFinetuneVps');
 finetuneKpsDir = fullfile(cachedir,'rcnnFinetuneKps');
 
-websiteDir = '/work5/shubhtuls/website/visualization';
-prototxtDir = '/work5/shubhtuls/prototxts/codeRelease/vpsKps/';
-snapshotsDir = '/work5/shubhtuls/snapshots/codeRelease/vpsKps/';
+websiteDir = '/work5/shubhtuls/website/visualization'; %directory where visualizations used for the main paper will be saved
+prototxtDir = fullfile(basedir,'external','caffe','prototxts');
+snapshotsDir = '/work5/shubhtuls/snapshots/codeRelease/vpsKps/'; %directory where caffemodels are saved
 
 %%
-folders = {'analysisVp','analysisKp','detectionPose','pose','encoding','predict','evaluate','utils','visualization','evaluation','learning','preprocess','rcnnKp','rcnnVp','cnnFeatures','sfm'};
+folders = {'analysisVp','analysisKp','detectionPose','pose','encoding','predict','evaluate','utils','visualization','evaluation','learning','preprocess','rcnnKp','rcnnVp','cnnFeatures'};
 for i=1:length(folders)
     addpath(genpath(folders{i}));
 end
 
 clear i;
 clear folders;
-load(fullfile(cachedir,'pascalTrainValIds'))
+
 
 mkdirOptional(cachedir);
+if exist(fullfile(cachedir,'pascalTrainValIds.mat'))
+    load(fullfile(cachedir,'pascalTrainValIds'))
+else
+    fIdTrain = fopen(fullfile(pascalDir,'VOC2012','ImageSets','Main','train.txt'));
+    trainIds = textscan(fIdTrain,'%s');
+    trainIds = trainIds{1};
+    fIdVal = fopen(fullfile(pascalDir,'VOC2012','ImageSets','Main','val.txt'));
+    valIds = textscan(fIdVal,'%s');
+    valIds = valIds{1};
+    save(fullfile(cachedir,'pascalTrainValIds.mat'),'trainIds','valIds');
+end
+
+    
+if ~exist(fullfile(cachedir,'imagenetTrainIds.mat'))
+    fnamesTrain = generateImagenetTrainNames();
+    save(fullfile(cachedir,'imagenetTrainIds.mat'),'fnamesTrain');
+end
 
 mkdirOptional(rotationJointDataDir);
 mkdirOptional(rotationImagenetDataDir);
