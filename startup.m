@@ -51,9 +51,9 @@ rotationJointDataDir = fullfile(cachedir,'rotationDataJoint');
 finetuneVpsDir = fullfile(cachedir,'rcnnFinetuneVps');
 finetuneKpsDir = fullfile(cachedir,'rcnnFinetuneKps');
 
-websiteDir = '/work5/shubhtuls/website/visualization'; %directory where visualizations used for the main paper will be saved
-prototxtDir = fullfile(basedir,'external','caffe','prototxts');
-snapshotsDir = '/work5/shubhtuls/snapshots/codeRelease/vpsKps/'; %directory where caffemodels are saved
+websiteDir = fullfile(cachedir,'visualization'); %directory where visualizations used for the main paper will be saved
+prototxtDir = fullfile(basedir,'prototxts');
+snapshotsDir = fullfile(cachedir,'snapshots'); %directory where caffemodels are saved - you'll have to set this up
 
 %%
 folders = {'analysisVp','analysisKp','detectionPose','pose','encoding','predict','evaluate','utils','visualization','evaluation','learning','preprocess','rcnnKp','rcnnVp','cnnFeatures'};
@@ -77,7 +77,6 @@ else
     valIds = valIds{1};
     save(fullfile(cachedir,'pascalTrainValIds.mat'),'trainIds','valIds');
 end
-
     
 if ~exist(fullfile(cachedir,'imagenetTrainIds.mat'))
     fnamesTrain = generateImagenetTrainNames();
@@ -95,6 +94,8 @@ mkdirOptional(rcnnKpsPascalDataDir);
 
 mkdirOptional(finetuneVpsDir);
 mkdirOptional(finetuneKpsDir);
+
+mkdirOptional(visualizationDir);
 
 if exist('external/caffe/matlab/caffe')
   addpath('external/caffe/matlab/caffe');
