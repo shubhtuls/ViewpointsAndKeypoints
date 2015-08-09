@@ -1,4 +1,4 @@
-net: "/work5/shubhtuls/prototxts/codeRelease/vpsKps/vggJointVps/trainTest.prototxt"
+net: "/data1/shubhtuls/code/ViewpointsAndKeypoints/prototxts/vggJointVps/trainTest.prototxt"
 test_iter: 100
 test_interval: 1000
 base_lr: 0.001
@@ -10,4 +10,4 @@ max_iter: 70000
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 10000
-snapshot_prefix: "/work5/shubhtuls/snapshots/codeRelease/vpsKps/vggJointVps"
+snapshot_prefix: "/data1/shubhtuls/code/ViewpointsAndKeypoints/cachedir/snapshots/vggJointVps"

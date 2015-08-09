@@ -11,7 +11,7 @@ layers {
   top: "e2coarse"
   top: "e3coarse"
   window_data_param {
-    source: "/work5/shubhtuls/cachedir/codeRelease/vpsKps/rcnnFinetuneVps/binnedJoint/Train.txt"
+    source: "/data1/shubhtuls/code/ViewpointsAndKeypoints/cachedir/rcnnFinetuneVps/binnedJoint/Train.txt"
     batch_size: 20
     fg_threshold: 0.5
     bg_threshold: 0.5
@@ -37,7 +37,7 @@ layers {
   top: "e2coarse"
   top: "e3coarse"
   window_data_param {
-    source: "/work5/shubhtuls/cachedir/codeRelease/vpsKps/rcnnFinetuneVps/binnedJoint/Val.txt"
+    source: "/data1/shubhtuls/code/ViewpointsAndKeypoints/cachedir/rcnnFinetuneVps/binnedJoint/Val.txt"
     batch_size: 20
     fg_threshold: 0.5
     bg_threshold: 0.5
