@@ -20,12 +20,5 @@ for x in $(ls data/PASCAL3D/Images | grep imagenet); do mv data/PASCAL3D/Images/
 # Download keypoint annotations
 # TODO
 
-# Download modified version of caffe
-mkdir external
-## TODO - git pull caffe
-
-# Download pascal keypoint annotations
-# TODO
-
 # Download r-cnn detections
 # TODO

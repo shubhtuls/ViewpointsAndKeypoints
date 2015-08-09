@@ -95,7 +95,7 @@ mkdirOptional(rcnnKpsPascalDataDir);
 mkdirOptional(finetuneVpsDir);
 mkdirOptional(finetuneKpsDir);
 
-mkdirOptional(visualizationDir);
+mkdirOptional(websiteDir);
 
 if exist('external/caffe/matlab/caffe')
   addpath('external/caffe/matlab/caffe');
