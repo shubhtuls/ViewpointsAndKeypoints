@@ -32,12 +32,6 @@ rcnnMultibinnedJointTrainValTestCreate([24 16 8 4]); % generates window file for
 % ./build/tools/caffe.bin train -solver PATH_TO_PROTOTXT_DIR/vggAzimuthVps/solver.prototxt -weights PATH_TO_PRETRAINED_VGG_CAFFEMODEL
 % after training the models, save the final snapshot in SNAPSHOT_DIR/finalSnapshots/[vggJointVps,vggAzimuthVps].caffemodel/
 
-%% Compute features
-generatePoseFeatures('vggJointVps','vggJointVps',224,params.classInds,1); % needed for evaluation
-
-%% Compute features for detections - takes a while, uncomment if not needed
-generateDetectionPoseFeatures(params.classInds,'vggJointVps','vggJointVps',224,1); % needed for ARP evaluation
-generateDetectionPoseFeatures(params.classInds,'vggJointAzimuth','vggJointAzimuth',224,1); % needed for AVP evaluation
     
 end
 
