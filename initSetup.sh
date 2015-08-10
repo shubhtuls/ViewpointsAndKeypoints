@@ -1,12 +1,6 @@
 # Directory for data
 mkdir data
 
-# Download PASCAL VOC
-wget http://host.robots.ox.ac.uk:8080/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar
-tar -xf VOCtrainval_11-May-2012.tar
-mv VOCdevkit data/
-mv VOCtrainval_11-May-2012.tar data/
-
 # Download PASCAL 3D
 wget ftp://cs.stanford.edu/cs/cvgl/PASCAL3D+_release1.1.zip
 unzip PASCAL3D+_release1.1.zip
@@ -21,7 +15,13 @@ for x in $(ls data/PASCAL3D/Images | grep imagenet); do mv data/PASCAL3D/Images/
 cp p3dEvaluate/*.m data/PASCAL3D/VDPM/
 
 # Download r-cnn detections
-# TODO
+wget -P ./data/ http://www.cs.berkeley.edu/~shubhtuls/cachedir/vpsKps/VOC2012_val_det.mat 
+
+# Download PASCAL VOC
+wget http://host.robots.ox.ac.uk:8080/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar
+tar -xf VOCtrainval_11-May-2012.tar
+mv VOCdevkit data/
+mv VOCtrainval_11-May-2012.tar data/
 
 # Download keypoint annotations
 # TODO

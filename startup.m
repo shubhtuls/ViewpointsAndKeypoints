@@ -29,14 +29,18 @@ global rcnnDetectionsFile
 basedir = pwd();
 cachedir  = fullfile(basedir,'cachedir'); % directory where all the intermediate computations and data will be saved
 
+%% These paths might need to be edited
+
 PASCAL3Ddir = fullfile(basedir,'data','PASCAL3D');
 pascalDir = fullfile(basedir,'data','VOCdevkit');
 pascalImagesDir = fullfile(basedir,'data','VOCdevkit','VOC2012','JPEGImages');
 imagenetImagesDir = fullfile(basedir,'data','imagenet','images');
-annotationDir = fullfile(basedir,'data','pascalAnnotations','imgAnnotations');
-segkpAnnotationDir = fullfile(basedir,'data','pascalAnnotations','segkps');
 rcnnDetectionsFile = fullfile(basedir,'data','VOC2012_val_det.mat');
-
+annotationDir = fullfile(basedir,'data','pascalAnnotations','imgAnnotations'); %required for keypoint prediction
+segkpAnnotationDir = fullfile(basedir,'data','pascalAnnotations','segkps'); %required for keypoint prediction
+snapshotsDir = fullfile(cachedir,'snapshots'); %directory where caffemodels are saved - you'll have to set this up
+    
+%% The paths below should not be edited
 params = getParams;
 
 rcnnVpsPascalDataDir = fullfile(cachedir,'rcnnVpsPascalData');
@@ -53,7 +57,6 @@ finetuneKpsDir = fullfile(cachedir,'rcnnFinetuneKps');
 
 websiteDir = fullfile(cachedir,'visualization'); %directory where visualizations used for the main paper will be saved
 prototxtDir = fullfile(basedir,'prototxts');
-snapshotsDir = fullfile(cachedir,'snapshots'); %directory where caffemodels are saved - you'll have to set this up
 
 %%
 folders = {'analysisVp','analysisKp','detectionPose','pose','encoding','predict','evaluate','utils','visualization','evaluation','learning','preprocess','rcnnKp','rcnnVp','cnnFeatures'};
