@@ -6,9 +6,9 @@ if(mirror)
     suff = 'Mirror';
 end
 
-pascalValNamesFile = fullfile(cachedir,'voc_val_names.mat');
+pascalValNamesFile = fullfile(cachedir,'pascalTrainValIds.mat');
 valNames = load(pascalValNamesFile);
-valNames = valNames.val_names;
+valNames = valNames.valIds;
 
 dataStructsDir = fullfile(cachedir,['rcnnDetectionPredsVps'],[proto suff]);
 mkdirOptional(dataStructsDir);
@@ -52,7 +52,7 @@ cnn_model.cnn.batch_size=20;
 for i=1:length(valNames)
     disp([num2str(i) '/' num2str(length(valNames))]);
     voc_id = valNames{i};
-    im = imread([pascalImagesDir voc_id '.jpg']);
+    im = imread(fullfile(pascalImagesDir, [voc_id '.jpg']));
     bbox = [];
     scores = [];
     labels = [];

@@ -17,8 +17,11 @@ mv PASCAL3D+* data/
 mkdir -p data/imagenet/images
 for x in $(ls data/PASCAL3D/Images | grep imagenet); do mv data/PASCAL3D/Images/$x/*.JPEG data/imagenet/images/; done
 
-# Download keypoint annotations
-# TODO
+# copy pascal3d metric evaluation files to pascal3d folder
+cp p3dEvaluate/*.m data/PASCAL3D/VDPM/
 
 # Download r-cnn detections
+# TODO
+
+# Download keypoint annotations
 # TODO
