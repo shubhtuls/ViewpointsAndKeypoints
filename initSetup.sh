@@ -17,11 +17,15 @@ cp p3dEvaluate/*.m data/PASCAL3D/VDPM/
 # Download r-cnn detections
 wget -P ./data/ http://www.cs.berkeley.edu/~shubhtuls/cachedir/vpsKps/VOC2012_val_det.mat 
 
+# Download keypoint annotations
+# TODO
+mkdir ./data/segkps
+wget -P ./data/segkps/ http://www.cs.berkeley.edu/~shubhtuls/cachedir/vpsKps/segkps.zip
+unzip ./data/segkps/segkps.zip -d ./data/segkps/
+
 # Download PASCAL VOC
 wget http://host.robots.ox.ac.uk:8080/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar
 tar -xf VOCtrainval_11-May-2012.tar
 mv VOCdevkit data/
 mv VOCtrainval_11-May-2012.tar data/
 
-# Download keypoint annotations
-# TODO

@@ -1,20 +1,21 @@
 clear;
 startup;
 globals;
-load('cache/trainValTestSets.mat');
+load(fullfile(cachedir,'pascalTrainValIds'));
 perf = zeros(14,20);
 
 for c = params.classInds
     class = pascalIndexClass(c);
     disp(class)
     load(fullfile(cachedir,'partNames',class));
-    suffix = 'All';
+    %suffix = 'All';
     
     %type = 'Rigid';
-    type = 'RigidAllPascal';
-    params.heatMapDims = [12 12];
+    %type = 'RigidAllPascal';
+    params.heatMapDims = [24 24];
+    params.kpsNet = 'vgg';
     loadFeatRigid;
-    [priorFeat] = posePrior(dataStruct,class,fnamesTrain,'AllPascal');
+    [priorFeat] = posePrior(dataStruct,class,trainIds);
     
     %% box areas
     Hs = dataStruct.bbox(:,4)-dataStruct.bbox(:,2);
@@ -25,7 +26,7 @@ for c = params.classInds
     featStruct{1} = feat12+feat6;
     %featStruct{2} = feat12+feat6;
     featStruct{2} = (feat12+feat6) + log(priorFeat+eps);
-    testInds = ismember(dataStruct.voc_image_id,vertcat(dontUseTheseFnamesTest,fnamesVal));
+    testInds = ismember(dataStruct.voc_image_id,valIds);
 
     %% normal
     goodInds{1} = testInds & ~dataStruct.occluded;

@@ -36,8 +36,7 @@ pascalDir = fullfile(basedir,'data','VOCdevkit');
 pascalImagesDir = fullfile(basedir,'data','VOCdevkit','VOC2012','JPEGImages');
 imagenetImagesDir = fullfile(basedir,'data','imagenet','images');
 rcnnDetectionsFile = fullfile(basedir,'data','VOC2012_val_det.mat');
-annotationDir = fullfile(basedir,'data','pascalAnnotations','imgAnnotations'); %required for keypoint prediction
-segkpAnnotationDir = fullfile(basedir,'data','pascalAnnotations','segkps'); %required for keypoint prediction
+segkpAnnotationDir = fullfile(basedir,'data','segkps'); %required for keypoint prediction
 snapshotsDir = fullfile(cachedir,'snapshots'); %directory where caffemodels are saved - you'll have to set this up
     
 %% The paths below should not be edited
@@ -48,6 +47,7 @@ rcnnVpsImagenetDataDir = fullfile(cachedir,'rcnnVpsImagenetData');
 rcnnKpsPascalDataDir = fullfile(cachedir,'rcnnKpsPascalData');
 
 kpsPascalDataDir = fullfile(cachedir,'kpsDataPascal');
+annotationDir = fullfile(basedir,'data','pascalAnnotations','imgAnnotations'); %required for keypoint prediction
 rotationPascalDataDir = fullfile(cachedir,'rotationDataPascal');
 rotationImagenetDataDir = fullfile(cachedir,'rotationDataImagenet');
 rotationJointDataDir = fullfile(cachedir,'rotationDataJoint');
@@ -90,6 +90,7 @@ mkdirOptional(rotationJointDataDir);
 mkdirOptional(rotationImagenetDataDir);
 mkdirOptional(rotationPascalDataDir);
 mkdirOptional(kpsPascalDataDir);
+mkdirOptional(annotationDir);
 
 mkdirOptional(rcnnVpsImagenetDataDir);
 mkdirOptional(rcnnVpsPascalDataDir);

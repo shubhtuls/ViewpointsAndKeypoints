@@ -5,12 +5,12 @@ load(fullfile(cachedir,'pascalTrainValIds'));
 params.heatMapDims = [12 12];
 
 %% Pose Priors
-% for c = params.classInds
-%     class = pascalIndexClass(c);
-%     posePriorMaps(class,trainIds);
-% end
+for c = params.classInds
+    class = pascalIndexClass(c);
+    posePriorMaps(class,trainIds);
+end
 
-priorAlphas = [0 0.1 0.2 0.3 0.4 0.5 0.7 1];% use 0.2 - ignore other vals
+priorAlphas = [0 0.2];% whether or not we use pose prior
 aps = zeros(numel(priorAlphas,20));
 
 %% Iterate over classes

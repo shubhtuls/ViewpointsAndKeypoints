@@ -9,6 +9,15 @@ generatePascalImageAnnotations();
 %% rcnn data files
 rcnnKpsDataCollect();
 
+%% generate partName labels
+mkdirOptional(fullfile(cachedir,'partNames'));
+for c = params.classInds
+    class = pascalIndexClass(c);
+    var = load(fullfile(segkpAnnotationDir,class));
+    partNames = var.keypoints.labels;
+    save(fullfile(cachedir,'partNames',class),'partNames');
+end
+
 %% generate window file
 params.heatMapDims = [6 6];
 pascalKpsMulticlassTrainValCreate()
@@ -18,15 +27,4 @@ pascalKpsMulticlassTrainValCreate()
 
 %% train the cnns
 
-
-%% create dataStructs for test
-for c = params.classInds
-    class = pascalIndexClass(c);
-    readKpsData(class);
 end
-
-%% add pose predictions features
-
-
-end
-

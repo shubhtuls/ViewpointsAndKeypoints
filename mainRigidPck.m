@@ -10,7 +10,7 @@ for c = params.classInds
     class = pascalIndexClass(c);
     disp(class)
     params.heatMapDims = [24 24];
-    params.kpsNet = 'vggOld';
+    params.kpsNet = 'vgg';
     loadFeatRigid;
     [priorFeat] = posePrior(dataStruct,class,trainIds);
     

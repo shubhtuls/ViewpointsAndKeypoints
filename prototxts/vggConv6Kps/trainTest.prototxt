@@ -6,7 +6,7 @@ layers {
   top: "label"
   top: "filter"
   window_data_param {
-    source: "/work5/shubhtuls/cachedir/codeRelease/vpsKps/rcnnFinetuneKps/TrainOccluded6.txt"
+    source: "/data1/shubhtuls/code/ViewpointsAndKeypoints/cachedir/rcnnFinetuneKps/TrainOccluded6.txt"
     batch_size: 30
     fg_threshold: 0.5
     bg_threshold: 0.5
@@ -27,7 +27,7 @@ layers {
   top: "label"
   top: "filter"
   window_data_param {
-    source: "/work5/shubhtuls/cachedir/codeRelease/vpsKps/rcnnFinetuneKps/ValOccluded6.txt"
+    source: "/data1/shubhtuls/code/ViewpointsAndKeypoints/cachedir/rcnnFinetuneKps/ValOccluded6.txt"
     batch_size: 30
     fg_threshold: 0.5
     bg_threshold: 0.5

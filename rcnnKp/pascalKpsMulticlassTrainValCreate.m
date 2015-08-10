@@ -2,18 +2,6 @@ function [] = pascalKpsMulticlassTrainValCreate()
 %RCNNTRAINVALTESTCREATE Summary of this function goes here
 %   Detailed explanation goes here
 
-%% WINDOW FILE FORMAT
-% repeated :
-%   img_path(abs)
-%   reg2sp file path
-%   sp file path
-%   num_pose_param
-%   channels
-%   height
-%   width
-%   num_windows
-%   classIndex overlap x1 y1 x2 y2 regionIndex poseParam0 .. poseParam(numPoseParam)
-
 %% Initialization
 globals;
 
