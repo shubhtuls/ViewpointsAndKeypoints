@@ -18,7 +18,7 @@ for j = 1:length(posNames)
     
     load(fullfile(annoDir,posNames{j}));
     for k=1:length(record.objects)
-        if(~isempty(record.objects(k).viewpoint) && ~record.objects(k).truncated && ~record.objects(k).occluded)
+        if(strcmp(record.objects(k).class,cls) && ~isempty(record.objects(k).viewpoint) && ~record.objects(k).truncated && ~record.objects(k).occluded)
             numpos = numpos + 1;
             bbox   = round(record.objects(k).bbox);
             pos(numpos).imsize = record.imgsize(1:2);
