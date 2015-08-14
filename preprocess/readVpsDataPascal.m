@@ -18,7 +18,7 @@ numpos = 0;
 for j = 1:length(posNames)
     load(fullfile(annoDir,posNames{j}));
     for k=1:length(record.objects)
-        if(~isempty(record.objects(k).viewpoint) && ~record.objects(k).difficult)
+        if(strcmp(cls,record.objects(k).class) && ~isempty(record.objects(k).viewpoint) && ~record.objects(k).difficult)
             if(~excludeOccluded || (~record.objects(k).truncated && ~record.objects(k).occluded))
                 numpos = numpos + 1;
                 bbox   = round(record.objects(k).bbox);
