@@ -46,7 +46,7 @@ N = key.totKps;
 for i=1:length(valNames)
     disp([num2str(i) '/' num2str(length(valNames))]);
     voc_id = valNames{i};
-    im = imread([pascalImagesDir voc_id '.jpg']);
+    im = imread(fullfile(pascalImagesDir, [voc_id '.jpg']));
     bbox = [];
     scores = [];
     labels = [];
