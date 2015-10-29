@@ -3,9 +3,9 @@ function generateDetectionKpsFeatures(classInds,proto,suffix,inputSize,batchSize
 globals;
 suff = '';
 
-pascalValNamesFile = fullfile(cachedir,'voc_val_names.mat');
+pascalValNamesFile = fullfile(cachedir,'pascalTrainValIds.mat');
 valNames = load(pascalValNamesFile);
-valNames = valNames.val_names;
+valNames = valNames.valIds;
 
 imgPredsDir = fullfile(cachedir,'rcnnImgDetectionPredsKps',[proto suff]);
 mkdirOptional(imgPredsDir);
