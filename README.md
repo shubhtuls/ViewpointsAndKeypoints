@@ -29,10 +29,8 @@ cd ../..
 We first need to create some data-structures which store the annotations for each object category. To do this run in matlab -
 
 ``` mainVpsPreprocess ```
-
 #### Network Training : 
-
-- We train two networks here - one for predicting all the euler angles (vggJointVps), other for various bin sizes of azimuth as required by AVP evaluation (vggAzimuthVps).
+- We train two networks here - one for predicting all the euler angles (vggJointVps), other for various bin sizes of azimuth as required by AVP evaluation (vggAzimuthVps). If you want to skip training, pretrained models are available [here](https://people.eecs.berkeley.edu/~shubhtuls/cachedir/vpsKps/)
 - Update the solver files in prototxts/[vggJointVps/vggAzimuthVps]/solver.prototxt to refer to the locations of the net configuration file as well as update the directory for saving snapshots.
 - Update the window file paths in the data layers of  prototxts/[vggJointVps/vggAzimuthVps]/trainTest.prototxt and to refer to the Train/Val files created by above functions.
 - Train the networks. Run the commands below from the caffe directory :
@@ -40,7 +38,7 @@ We first need to create some data-structures which store the annotations for eac
 ```./build/tools/caffe.bin train -solver ../../prototxts/vggJointVps/solver.prototxt -weights PATH_TO_PRETRAINED_VGG_CAFFEMODEL
 ./build/tools/caffe.bin train -solver ../../prototxts/vggAzimuthVps/solver.prototxt -weights PATH_TO_PRETRAINED_VGG_CAFFEMODEL```
 
-- After training the models, save the final snapshot in SNAPSHOT_DIR/finalSnapshots/[vggJointVps,vggAzimuthVps].caffemodel/, where SNAPSHOT_DIR is set in startup.m
+- After training/downloading the models, save the final snapshot in SNAPSHOT_DIR/finalSnapshots/[vggJointVps,vggAzimuthVps].caffemodel/, where SNAPSHOT_DIR is set in startup.m
 
 #### Predciting Pose for PASCAL VOC
 - We will predict viewpoints for objects in PASCAL VOC validation set as well as for the R-CNN detections. To compute this, run
@@ -78,8 +76,7 @@ We first need to create some data-structures which store the annotations for eac
 ``` mainKpsPreprocess ```
 
 #### Network Training : 
-
-- We train two networks here - one for predicting keypoints at a coarse scale (6 X 6) and another for afiner scale (12 X 12). 
+- We train two networks here - one for predicting keypoints at a coarse scale (6 X 6) and another for afiner scale (12 X 12). If you want to skip training, pretrained models are available [here](https://people.eecs.berkeley.edu/~shubhtuls/cachedir/vpsKps/).
 - Update the solver files in prototxts/[vggConv6Kps/vggConv12Kps]/solver.prototxt to refer to the locations of the net configuration file as well as update the directory for saving snapshots.
 - Update the window file paths in the data layers of  prototxts/[vggJointVps/vggAzimuthVps]/trainTest.prototxt and to refer to the Train/Val files created by above functions.
 - Train the networks. Run the commands below from the caffe directory :
@@ -89,7 +86,7 @@ We first need to create some data-structures which store the annotations for eac
 
 Note that for training the finer scale model, we initialize from a coarse scale model. An alternate is to finetune from a classification VGG model but this requires the use of cumulative gradients and a much longer training time.
 
-- After training the models, save the final snapshot in SNAPSHOT_DIR/finalSnapshots/[vggConv6Kps,vggConv12Kps].caffemodel/, where SNAPSHOT_DIR is set in startup.m
+- After training/downloading the models, save the final snapshot in SNAPSHOT_DIR/finalSnapshots/[vggConv6Kps,vggConv12Kps].caffemodel/, where SNAPSHOT_DIR is set in startup.m
 
 #### Predciting Pose for PASCAL VOC
 - We will predict keypoints for objects in PASCAL VOC validation set as well as for the R-CNN detections. To compute this, run
