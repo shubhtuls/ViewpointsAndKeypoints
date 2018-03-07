@@ -32,8 +32,8 @@ for c = params.classInds
         %acc(i) = mean(pckMetric(pred,dataStruct,valIds));
         acc(i) = mean(pckMetric(pred,dataStruct,ismember(dataStruct.voc_image_id,valIds) & ~dataStruct.occluded));
     end
-    ningPreds = getNingPreds(class,dataStruct);
-    acc(i+1) = mean(pckMetric(ningPreds,dataStruct,ismember(dataStruct.voc_image_id,valIds) & ~dataStruct.occluded));
+    %ningPreds = getNingPreds(class,dataStruct);
+    %acc(i+1) = mean(pckMetric(ningPreds,dataStruct,ismember(dataStruct.voc_image_id,valIds) & ~dataStruct.occluded));
     disp(acc)
     perf(c,:) = acc;
 end
